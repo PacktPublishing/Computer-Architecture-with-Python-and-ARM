@@ -1,0 +1,6 @@
+inst = input('Enter operation: >>').replace(',',' ')
+print('inst',inst)
+p = inst.split(' ')
+print ('p',p)
+t1,t2,t3,t4 = p[0],int(p[1][1:]),int(p[2][1:]),int(p[3][1:],16)
+print('1,t2,t3,t4',t1,t2,t3,t4)

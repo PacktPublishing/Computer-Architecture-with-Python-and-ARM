@@ -1,0 +1,9 @@
+mem = [7,5,4,0,3,9,0,0]         # Preset the memory. Unspecified locations are set to 0
+pointer0 = mem[0]               # Get pointer 0 to result
+pointer1 = mem[1]               # Get pointer 1 to source 1
+pointer2 = mem[2]               # Get pointer 2 to source 2
+source1 = mem[pointer1]         # Get source data 1
+source2 = mem[pointer2]         # Get source data 2
+result = source1 + source2      # Do the addition
+mem[pointer0] = result          # Store result at the location pointed at by pointer 0
+print('Memory =', mem)          # Print all memory locations
