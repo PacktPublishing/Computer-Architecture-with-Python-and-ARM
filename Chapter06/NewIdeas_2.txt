@@ -1,0 +1,75 @@
+@ Version of 12 July 2023
+      LDRL r1,3
+      LDRL r0,2
+       STRI r0,[r1]
+       INC  r1
+       STRI r0,[r1]
+       INC  r1
+       STRI r0,[r1]
+       INC  r1
+
+test EQU 8
+       NOP
+    LDRL r3,test
+       NOP
+   DEC r1
+   STRI r3,[r1] 
+   NOT r1
+   LDRL r1,1
+   NOT r1
+   LDRL r1,0xFFFF
+   NOT r1
+@ 
+abc:       LDRL r5,%1001
+      LDRL r1,0
+       STRI r5,[r1]
+  INC r3
+       LDRI r3,[r1]
+       INC  r3
+       STRI r3,[r2]
+ABC: NOP
+   @
+ @ test
+       STOP
+       END
+
+
+
+      STRI r5,[r4]
+      ADDL r7,r5,4
+      ADD  r0,r7,r4
+      CMPL r4,6
+      LDRL r6,A1
+      MOV  r0,r6
+      CMP  r0,r6
+      DEC  r0
+      CMP  r0,r6
+      INC r1
+
+      LDRL r1,3
+      LDRL r2,4
+      
+A1:   CMP r2,r1
+A2:   CMPL r2,4  
+      LDRL r1,5
+      MOV  r2,r1 
+      INC  r2
+      ADDL r3,r2,4
+      ADD  r0,r1,r3     
+      NOP
+      INC r1
+      INC r1
+z1:   DEC r2 
+      BRA Z2
+      NOP
+Z2:   NOP
+      NOP
+      INC r2
+      CMP r1,r2
+      NOP
+      END
+      NOP
+      NOP
+      STOP
+      END
+      NOP

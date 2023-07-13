@@ -16,7 +16,7 @@ z = symTab.get('beq next'.split(' ')[1])                        # We've done it 
 print('beq ',z)
 print('Symbol table ', symTab)                                  # Print the symbol table using a print
 symTab['nextOne'] = 1234                                        # This is how we add a new key and value
-print('Symbol table ', symTab) # Here's the augmented symbol table
+print('Symbol table ', symTab)                                  # Here's the augmented symbol table
 opCode = {'add':('Arith',0b0001,3),'ldr':('Move',0b1100,2),'nop':('Miscellaneous',1111,0)}
  # New directory. Each key has three values in a tuple
 thisInst = 'ldr'                                                # Let's look up an instruction

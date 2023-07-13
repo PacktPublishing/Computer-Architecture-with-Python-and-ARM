@@ -8,8 +8,7 @@ allOps = {'nop':(1,1),'stop':(1,2),'inc':(2,8),'dec':(2,9),'bra':(2,10), \
 'beq':(2,11),'bne':(2,12),'mov':(3,16),'ld':(3,19), \
 'cmpl':(3,17),'cmp':(3,18),'add':(4,24),'sub':(4,25),'test':(0,0)}
 # NOTE that progS is the actual program to be executed. It is embedded into the program
-progS = ['this: equ 26','ld this:,7','that: equ 28','ld 27,2', \
-'ld that:,1','loop: add 28,28,26', 'dec 26','bne loop:','stop']
+progS = ['this: equ 26','ld this:,7','that: equ 28','ld 27,2','ld that:,1','loop: add 28,28,26', 'dec 26','bne loop:','stop']
 symTab = {} # Label symbol table
 prog = [] # progS is prog without equates
 for i in range (0,len(progS)): # Process source code for equates
@@ -68,42 +67,40 @@ while run: # Instruction execution loop
         run = False # Terminate on stop instruction
         print('Execution terminated on stop') # Say 'Goodbye'
         break # and exit the loop
-operand1, operand2, operand3 = '', '', '' # Dummy operands (null strings)
-if opLen > 1: operand1 = mem[pc + 1]
-if opLen > 2: operand2 = mem[pc + 2]
-if opLen > 3: operand3 = mem[pc + 3]
-pc = pc + opLen
-iC = iC + 1
-mnemonic = lookUp[opCode]
-if mnemonic == 'nop': pass
-elif mnemonic == 'inc': mem[operand1] = mem[operand1] + 1
-elif mnemonic == 'dec':
-    z = 0
-    mem[operand1] = mem[operand1] - 1
+    operand1, operand2, operand3 = '', '', '' # Dummy operands (null strings)
+    if opLen > 1: operand1 = mem[pc + 1]
+    if opLen > 2: operand2 = mem[pc + 2]
+    if opLen > 3: operand3 = mem[pc + 3]
+    pc = pc + opLen
+    iC = iC + 1
+    mnemonic = lookUp[opCode]
+    if mnemonic == 'nop': pass
+    elif mnemonic == 'inc': mem[operand1] = mem[operand1] + 1
+    elif mnemonic == 'dec':
+        z = 0
+        mem[operand1] = mem[operand1] - 1
+        if mem[operand1] == 0: z = 1
+    elif mnemonic == 'bra': pc = map[operand1] # Map instruction address to byte address
+    elif mnemonic == 'beq' and z == 1: pc = map[operand1]
+    # Map instruction address to byte address
+    elif mnemonic == 'bne' and z == 0: pc = map[operand1]
+    # Map instruction address to byte address
+    elif mnemonic == 'ld': mem[operand1] = operand2
+    elif mnemonic == 'mov': mem[operand1] = mem[operand2]
+    elif mnemonic == 'cmp':
+        diff = mem[operand1] - mem[operand2]
+        z = 0
+        if diff == 0: z = 1
+    elif mnemonic == 'cmpl':
+        diff = mem[operand1] - operand2
+        z = 0
+        if diff == 0: z = 1
+    elif mnemonic == 'add': mem[operand1] = mem[operand2] + mem[operand3]
+    elif mnemonic == 'sub':
+        mem[operand1] = mem[operand2] - mem[operand3]
+        z = 0
     if mem[operand1] == 0: z = 1
-elif mnemonic == 'bra': pc = map[operand1] # Map instruction address to byte address
-elif mnemonic == 'beq' and z == 1: pc = map[operand1]
-# Map instruction address to byte address
-elif mnemonic == 'bne' and z == 0: pc = map[operand1]
-# Map instruction address to byte address
-elif mnemonic == 'ld': mem[operand1] = operand2
-elif mnemonic == 'mov': mem[operand1] = mem[operand2]
-elif mnemonic == 'cmp':
-    diff = mem[operand1] - mem[operand2]
-    z = 0
-    if diff == 0: z = 1
-elif mnemonic == 'cmpl':
-    diff = mem[operand1] - operand2
-    z = 0
-    if diff == 0: z = 1
-elif mnemonic == 'add': mem[operand1] = mem[operand2] + mem[operand3]
-elif mnemonic == 'sub':
-    mem[operand1] = mem[operand2] - mem[operand3]
-    z = 0
-    if mem[operand1] == 0: z = 1
-x = input('... ')
-xxxx = mnemonic + ' ' + str(operand1) + ' ' + str(operand2) \
-+ ' ' + str(operand3)
-instPrint = ' {0:<15}'.format(xxxx) # re-format the instruction
-print ('iC=',iC-1,'\tpc=',pcOld,'\tOp=',mnemonic,'z=',z, \
-'\tmem 24-35=',mem[24:36],'\tInstruction = ', instPrint)
+    x = input('... ')
+    xxxx = mnemonic + ' ' + str(operand1) + ' ' + str(operand2) + ' ' + str(operand3)
+    instPrint = ' {0:<15}'.format(xxxx) # re-format the instruction
+    print ('iC=',iC-1,'\tpc=',pcOld,'\tOp=',mnemonic,'z=',z,'\tmem 24-35=',mem[24:36],'\tInstruction = ', instPrint)

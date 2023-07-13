@@ -1,0 +1,9 @@
+diskCode
+b
+add r1,r2,[r3]
+
+ADD r3 @ test
+ 
+r2,,r3
+ 
+gg

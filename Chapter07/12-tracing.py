@@ -39,11 +39,11 @@ while run == 1:                                                         # PROGRA
      elif c[0]== 't' and len(c) > 2 and c[2:].isdigit():                # Test for 't' and number
          count = int(c[2:])                                             # Set the count for silent mode
          trace = 0                                                      # Turn off single-step
- elif c[0] == 'b' and len(c) > 2 and c[2:].isdigit():                   # Test for b (set breakpoint)  ### missing :
-     breakPoint = int(c[2:])                                            # Get breakpoint address and add to table
-     breakTab.append(breakPoint)
- elif c == 'd':                                                         # Test for d to display breakpoint info
-    print('Display status: breakpoints =', breakTab, \
-    'traced codes =',traceCodes)
- elif c in opCodes: traceCodes.append(c)                                # Test for a valid opcode and add to list
+     elif c[0] == 'b' and len(c) > 2 and c[2:].isdigit():                   # Test for b (set breakpoint)  ### missing :
+         breakPoint = int(c[2:])                                            # Get breakpoint address and add to table
+         breakTab.append(breakPoint)
+     elif c == 'd':                                                         # Test for d to display breakpoint info
+        print('Display status: breakpoints =', breakTab, \
+        'traced codes =',traceCodes)
+     elif c in opCodes: traceCodes.append(c)                                # Test for a valid opcode and add to list
 print('\nProgram terminated')

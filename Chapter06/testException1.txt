@@ -1,0 +1,5 @@
+@ Test exception file\n
+nop
+nop
+inc
+end!

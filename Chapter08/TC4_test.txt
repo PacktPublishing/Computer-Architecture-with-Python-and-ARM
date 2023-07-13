@@ -1,0 +1,35 @@
+@ TC4_test (badly set out on purpose)
+@ 31 Oct 2021
+      .equ abc 4
+.word aaa abc
+.word bbb 5
+.dsw   dataA 6        @ data area to store numbers
+.word  end 0xFFFF
+
+ ldrl r0,0xF
+    nop  @ test
+ addl r1,r7,2
+ bl lk
+back: rnd r0
+       ldrl r3,dataA     @ r3 points are data area
+       ldrm r4,bbb     @ r4 contains value to store      
+ ldrl r5,4  @number of words to store
+loop: nop       @ 
+      bsr sub1
+      dec r5
+ bne loop
+ stop
+
+sub1: stri r4,[r3,0]
+   inc r3
+   addl r4,r4,2
+   cmpl r4,9
+   bne skip
+   addl r4,r4,6
+
+skip:  rts
+
+lk: ldrl r6,%11100101
+        andl r7,r6,0xF0
+  rl
+@ rl  @ Return from link
