@@ -1,9 +1,9 @@
-# Practical Computer Architecture with Python and ARM 
+# Computer Architecture with Python and ARM 
 
 <a href="https://www.packtpub.com/product/practical-computer-architecture-with-python-and-arm/9781837636679?utm_source=github&utm_medium=repository&utm_campaign="><img src="https://content.packt.com/B19624/cover_image_small.png" alt="
 Practical Computer Architecture with Python and ARM" height="256px" align="right"></a>
 
-This is the code repository for [Practical Computer Architecture with Python and ARM](https://www.packtpub.com/product/practical-computer-architecture-with-python-and-arm/9781837636679?utm_source=github&utm_medium=repository&utm_campaign=), published by Packt.
+This is the code repository for [Computer Architecture with Python and ARM ](https://www.packtpub.com/product/practical-computer-architecture-with-python-and-arm/9781837636679?utm_source=github&utm_medium=repository&utm_campaign=), published by Packt.
 
 **An introductory guide for enthusiasts and students to learn how computers work and program their own**
 
